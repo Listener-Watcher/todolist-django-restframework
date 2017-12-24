@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block filter %}
+{% endblock %}
+
+{% block item_index %}
+<div class="container">
+  <a href='/todolist/add' class='btn btn-primary'>+ Add Item</a>
+  <div class='col-sm-6 col-sm-offset-3'>
+    <br /><br />
+    <ul>
+      {% for item in item_all %}
+      <li><a href='/todolist/details/{{ item.id }}'>{{ item.title }}</a>:
+        {{ item.text }}
+      </li>
+      {% endfor %}
+    </ul>
+  </div>
+</div>
+{% endblock %}

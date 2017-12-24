@@ -1,0 +1,20 @@
+{% include 'base.html' %}
+<div class="container">
+<a href='/todolist' class='btn btn-primary'><< Go Back</a>
+<a href='/todolist/edition/{{ item.id }}' class='btn btn-primary'>Edit</a>
+<a href='/todolist/deletion/{{ item.id }}' class='btn btn-primary'>Delete</a>
+<a href='/todolist/finished/{{ item.id }}' class='btn btn-primary'>Complete</a>
+<div class='col-sm-6 col-sm-offset-3'>
+  <br /><br /><br /><br />
+<div class='row' style='padding:10px ;background-color:#bdd2e3'>
+<h1>{{ item.title }}</h1>
+Created on {{ item.begin }}
+</div>
+<br />
+<br />
+<br />
+<div class='col-sm-14'>
+<p class='lead'>{{ item.text }}</p>
+</div>
+</div>
+</div>

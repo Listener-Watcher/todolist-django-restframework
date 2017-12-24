@@ -1,0 +1,71 @@
+ {% extends 'base.html' %}
+ {% load crispy_forms_tags %}
+    {% load staticfiles %}
+    <script src="{% static 'js/jquery.min.js' %}"></script>
+    <!-- Bootstrap core CSS -->
+    <script src="{% static 'js/font-awesome.min.js' %}"></script>
+    <script src="{% static 'js/ie-emulation-modes-warning.js' %}"></script>
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'css/board.css' %}" rel="stylesheet">
+    {% block dashboard %}
+    <style>
+    {% block style %}
+    .nav-side {
+      padding:50px 0px 5px 10px;
+    }
+    .cus-image{
+      width:12px;
+      height:15px;
+      display:inline;
+    }
+    {% endblock %}
+    </style>
+    <div class="container" style='font-size:20px;'>
+      <div class="row">
+        <div class="col-sm-9 col-sm-offset-2">
+          <h2>Your Todo List</h2>
+          <br />
+          <a href='/todolist/add' class='btn btn-primary'>+ Add Item</a>
+          <div class="table-responsive">
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Title</th>
+                  <th>Status</th>
+                  <th>
+                    <form method='POST' action='{% url 'todolist' %}'>
+                      Priority&nbsp;
+                      {% csrf_token %}
+                      <input name="priority" type='hidden' value='priority' />
+                      <!--<input type='image' src="{% static 'img/sort.png' %}" class='cus-image' />-->
+                    </form>
+                  </th>
+                  <th>
+                    <form method='POST' action='{% url 'todolist' %}'>
+                      Deadline&nbsp;
+                      {% csrf_token %}
+                      <input name="end" type='hidden' value='end' />
+                      <!--<input type='image' src="{% static 'img/sort.png' %}" class='cus-image' />-->
+                    </form>
+                  </th>
+				{% for item in item_all %}
+                <tr>
+                  <td>{{ item.id }}</td>
+                  <td><a href='/todolist/details/{{ item.id }}'>{{ item.title }}</a></td>
+                  <td>{{ item.finished }}</td>
+                  <td>{{ item.priority }}</td>
+                  <td>{{ item.end }}</td>
+                </tr>
+                {% endfor %}
+                </tr>
+              </thead>
+              <tbody>
+
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+    {% endblock %}

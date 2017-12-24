@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+
+{% load staticfiles %}
+
+{% include 'head_css.html' %}
+<style>
+{% block style %}
+.navbar-static-top {
+  margin-bottom: 0PX !important;
+}
+.text-align-center {
+  text-align: center;
+}
+.jumbotron {
+  background-color: #184365;
+  color: #fff;
+}
+{% endblock %}
+</style>
+
+{% block head_title %}Welcome | {{ block.super}}{% endblock %}
+
+<!-- Main component for a primary marketing message or call to action -->
+{% block jumbotron %}
+<div class="jumbotron">
+<div class="container">
+  <div class="row">
+    <div class='col-sm-6'>
+      <h1>Try Todo List</h1>
+      <p>
+        <a class="btn btn-lg btn-primary" href="/accounts/register/" role="button">Sign Up </a>
+      </p>
+    </div>
+  </div>
+</div>
+</div>
+{% endblock %}
+
+
+{% block content %}
+    {% if request.user.is_authenticated %}
+    <div class='col-sm-3'>
+      <p class='lead text-align-center'>
+        <i class="fa fa-smile-o fa-2x" aria-hidden="true"></i>  Success!Enjoy your journey!</p>
+    </div>
+    {% if queryset %}
+    <br />
+    <br />
+    <br />
+    <h2>Welcome Staff</h2>
+    <table class='table'>
+    {% for instance in queryset %}
+      <tr>
+        <td>{{ forloop.counter }}</td>
+        <td>{{ instance }}</td>
+        <td>{{ instance.full_name }}</td>
+        <td>{{ instance.timestamp|timesince }} ago</td>
+      <tr>
+    {% endfor %}
+  </table>
+    {% endif %}
+
+    {% else %}
+    <div class='col-sm-3'>
+      <p class='lead text-align-center'>
+        <i class="fa fa-meh-o fa-2x" aria-hidden="true"></i>  Login to use it!</p>
+    </div>
+  </div>
+  {% endif %}
+{% endblock %}

@@ -1,0 +1,15 @@
+{% include 'base.html' %}
+{% load crispy_forms_tags %}
+<div class="container">
+  <a href='/todolist' class='btn btn-primary'>Go Back</a>
+    <div class='col-sm-6 col-sm-offset-3'>
+  <br /><br /><br /><br />
+
+<form method='POST' action=''>
+  {% csrf_token %}
+  {{ form|crispy }}
+  <input class='btn btn-primary' type='submit' value='Save' />
+</form>
+<br />
+</div>
+</div>
