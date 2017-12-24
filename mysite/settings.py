@@ -114,7 +114,7 @@ STATIC_URL = '/static/'
 
 AUTHENTICATION_BACKENDS = (
     'django.contrib.auth.backends.ModelBackend',
-    'account.authentication.EmailAuthBackend',
+    #'account.authentication.EmailAuthBackend',
 )
 
 # registration redux settings
